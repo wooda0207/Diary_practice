@@ -35,6 +35,11 @@ const DiaryEditor = ({ onCreate }) => {
 
     onCreate(state.author, state.content, state.emotion);
     alert("success");
+    setState({
+      author: "",
+      content: "",
+      emotion: 1,
+    });
   };
 
   return (

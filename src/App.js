@@ -3,7 +3,8 @@ import "./App.css";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 
-// const dummyList = [
+//임시리스트
+//const dummyList = [
 //   {
 //     id: 1,
 //     author: "woo",
@@ -52,10 +53,24 @@ function App() {
     setData([newItem, ...data]);
   };
 
+  const onRemove = (targetId) => {
+    console.log(`${targetId}가 삭제`);
+    const newDiaryList = data.filter((it) => it.id !== targetId);
+    setData(newDiaryList);
+  };
+
+  const onEdit = (targetId, newContent) => {
+    setData(
+      data.map((it) =>
+        it.id === targetId ? { ...it, content: newContent } : it
+      )
+    );
+  };
+
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList dairyList={[data]} />
+      <DiaryList onEdit={onEdit} onRemove={onRemove} dairyList={data} />
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import DiaryItem from "./DiaryItem";
 
-const DiaryList = ({ dairyList }) => {
+const DiaryList = ({ onEdit, onRemove, dairyList }) => {
   return (
     <div className="DiaryList">
-      <h2>DiaryList</h2>
+      <h2>Diary List</h2>
       <h4>{dairyList.length} Diaries</h4>
       <div>
         {dairyList.map((it) => (
-          <DiaryItem key={it.id} {...it} />
+          <DiaryItem key={it.id} {...it} onEdit={onEdit} onDelete={onRemove} />
           // 리스트는 고유키값을 받아와야함, 혹시 고유키가 없다면 인덱스로.. 벗
           // 인덱스는 수정,삭제 작업을 통해 바뀌니깐 안하는편이 좋음
           // <div key={it.id}>
